@@ -21,7 +21,7 @@ def triangulation() -> None:
     if pf_param.ENABLE_SAVE_VIDEO:
         map.init_recorder()
     if pf_param.ENABLE_DRAW_BEACONS:
-        map.draw_beacons()
+        map.draw_beacons(True)
 
     if param.LERP_WIN_POLICY == 1:    # liner interpolation
         for i in range(len(log.lerped_ts)):

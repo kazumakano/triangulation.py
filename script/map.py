@@ -30,8 +30,6 @@ class Map(PfMap):
     def draw_any_pos(self, pos: np.ndarray) -> None:
         if pf_param.ENABLE_CLEAR:
             self.clear()
-            if pf_param.ENABLE_DRAW_BEACONS:
-                self.draw_beacons() 
         try: 
             super().draw_any_pos(pos, (0, 0, 255))
         except:
