@@ -1,11 +1,13 @@
 import argparse
-from datetime import datetime
+from datetime import datetime, timedelta
 import numpy as np
 import particle_filter.script.parameter as pf_param
 import script.parameter as param
+import script.utility as util
 from script.log import Log
 from script.map import Map
 from script.parameter import set_params
+from script.window import Window
 
 
 def _set_main_params(conf: dict) -> None:
@@ -24,8 +26,10 @@ def triangulation() -> None:
         map.draw_beacons(True)
 
     if param.LERP_WIN_POLICY == 1:    # liner interpolation
-        for i in range(len(log.lerped_ts)):
-            strong_beacon_indexes, strong_rssis = log.get_strong_beacons(i)
+        for i, t in enumerate(log.lerped_ts):
+            print(f"main.py: {t.time()}")
+
+            strong_beacon_indexes, strong_rssis = util.get_strong_beacons(log.lerped_rssi[i])
             estim_pos = map.estim_pos_by_triangulation(strong_beacon_indexes, strong_rssis)
 
             if not np.isnan(estim_pos[0]):    # if not lost
@@ -33,6 +37,23 @@ def triangulation() -> None:
                 map.show()
             if pf_param.ENABLE_SAVE_VIDEO:
                 map.record()
+    
+    if param.LERP_WIN_POLICY == 2:    # sliding window
+        t = BEGIN
+        while t <= END:
+            print(f"main.py; {t.time()}")
+            win = Window(log, map, t)
+
+            strong_beacon_indexes, strong_rssis = util.get_strong_beacons(win.rssi_list)
+            estim_pos = map.estim_pos_by_triangulation(strong_beacon_indexes, strong_rssis)
+
+            if not np.isnan(estim_pos[0]):
+                map.draw_any_pos(estim_pos)
+                map.show()
+            if pf_param.ENABLE_SAVE_VIDEO:
+                map.record()
+            
+            t += timedelta(seconds=pf_param.WIN_STRIDE)
 
     print("main.py: reached end of log")
     if pf_param.ENABLE_SAVE_VIDEO:

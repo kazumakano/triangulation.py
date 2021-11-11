@@ -3,7 +3,19 @@ import math
 from typing import Any, Tuple, Union
 import numpy as np
 import particle_filter.script.parameter as pf_param
+from . import parameter as param
 
+
+def get_strong_beacons(rssi_list: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    sorted_beacon_index_list: np.ndarray = rssi_list.argsort().astype(int)[::-1]    # sort by strength
+
+    strong_rssis = np.empty(0, dtype=np.float16)
+    for i in range(param.MAX_USE_BEACON_NUM):
+        if np.isneginf(rssi_list[sorted_beacon_index_list[i]]):
+            break
+        strong_rssis = np.hstack((strong_rssis, rssi_list[sorted_beacon_index_list[i]]))
+
+    return sorted_beacon_index_list[:len(strong_rssis)], strong_rssis    # arrays of strong beacon index and RSSI
 
 # calculate RSSI backward by distance-RSSI relation
 def calc_rssi_by_dist(dist: float) -> float:

@@ -43,14 +43,3 @@ class Log(PfLog):
                     break
 
         return sorted_ts, sorted_rssi
-
-    def get_strong_beacons(self, time_index: int) -> Tuple[np.ndarray, np.ndarray]:
-        sorted_beacon_index_list: np.ndarray = self.lerped_rssi[time_index].argsort().astype(int)[::-1]    # sort by strength
-
-        strong_rssis = np.empty(0, dtype=np.float16)
-        for i in range(param.MAX_USE_BEACON_NUM):
-            if np.isneginf(self.lerped_rssi[time_index, sorted_beacon_index_list[i]]):
-                break
-            strong_rssis = np.hstack((strong_rssis, self.lerped_rssi[time_index, sorted_beacon_index_list[i]]))
-
-        return sorted_beacon_index_list[:len(strong_rssis)], strong_rssis    # arrays of strong beacon index and RSSI
