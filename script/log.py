@@ -14,15 +14,15 @@ class Log(PfLog):
             self.lerped_ts = np.empty(sample_num, dtype=datetime)
             self.lerped_rssi = np.full((sample_num, len(self.mac_list)), -np.inf, dtype=np.float16)
 
-            sorted_ts, sorted_rssi = self._separate_by_mac()
+            separated_ts, separated_rssi = self._separate_by_mac()
 
             for i in range(sample_num):
                 self.lerped_ts[i] = begin + i * (end - begin) / sample_num
                 for j in range(len(self.mac_list)):
-                    for k in range(len(sorted_ts[j]) - 1):
-                        if sorted_ts[j][k] <= self.lerped_ts[i] <= sorted_ts[j][k+1]:
-                            if (sorted_ts[j][k+1] - sorted_ts[j][k]).seconds < param.MAX_BLANK_LEN:    # if blank length is short enough to interpolate
-                                self.lerped_rssi[i][j] = (sorted_rssi[j][k] * (sorted_ts[j][k+1] - self.lerped_ts[i]) + sorted_rssi[j][k+1] * (self.lerped_ts[i] - sorted_ts[j][k])) / (sorted_ts[j][k+1] - sorted_ts[j][k])
+                    for k in range(len(separated_ts[j]) - 1):
+                        if separated_ts[j][k] <= self.lerped_ts[i] <= separated_ts[j][k+1]:
+                            if (separated_ts[j][k+1] - separated_ts[j][k]).seconds < param.MAX_BLANK_LEN:    # if blank length is short enough to interpolate
+                                self.lerped_rssi[i][j] = (separated_rssi[j][k] * (separated_ts[j][k+1] - self.lerped_ts[i]) + separated_rssi[j][k+1] * (self.lerped_ts[i] - separated_ts[j][k])) / (separated_ts[j][k+1] - separated_ts[j][k])
                             break
 
             print("log.py: log has been interpolated")
