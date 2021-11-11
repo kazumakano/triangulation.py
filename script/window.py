@@ -2,7 +2,6 @@ from datetime import datetime
 import numpy as np
 import particle_filter.script.parameter as pf_param
 from .log import Log
-from .map import Map
 
 
 class Window:
