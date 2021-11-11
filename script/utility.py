@@ -7,7 +7,7 @@ from . import parameter as param
 
 
 def get_strong_beacons(rssi_list: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
-    sorted_beacon_index_list: np.ndarray = rssi_list.argsort().astype(int)[::-1]    # sort by strength
+    sorted_beacon_index_list: np.ndarray = rssi_list.argsort()[::-1]    # sort by strength
 
     strong_rssis = np.empty(0, dtype=np.float16)
     for i in range(param.MAX_USE_BEACON_NUM):
