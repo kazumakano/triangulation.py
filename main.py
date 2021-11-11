@@ -42,7 +42,7 @@ def triangulation() -> None:
         t = BEGIN
         while t <= END:
             print(f"main.py; {t.time()}")
-            win = Window(log, map, t)
+            win = Window(log, t)
 
             strong_beacon_indexes, strong_rssis = util.get_strong_beacons(win.rssi_list)
             estim_pos = map.estim_pos_by_triangulation(strong_beacon_indexes, strong_rssis)

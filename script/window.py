@@ -6,7 +6,7 @@ from .map import Map
 
 
 class Window:
-    def __init__(self, log: Log, map: Map, current: datetime) -> None:
+    def __init__(self, log: Log, current: datetime) -> None:
         ts, mac, rssi = log.slice_win(current)
         
         self.rssi_list = np.full(len(log.mac_list), -np.inf, dtype=np.float16)
