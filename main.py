@@ -37,7 +37,7 @@ def triangulation() -> None:
                 map.show()
             if pf_param.ENABLE_SAVE_VIDEO:
                 map.record()
-    
+
     if param.LERP_WIN_POLICY == 2:    # sliding window
         t = BEGIN
         while t <= END:
