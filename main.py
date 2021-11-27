@@ -56,10 +56,10 @@ def triangulation() -> None:
             t += timedelta(seconds=pf_param.WIN_STRIDE)
 
     print("main.py: reached end of log")
-    if pf_param.ENABLE_SAVE_VIDEO:
-        map.save_video()
     if pf_param.ENABLE_SAVE_IMG:
         map.save_img()
+    if pf_param.ENABLE_SAVE_VIDEO:
+        map.save_video()
     map.show(0)
 
 if __name__ == "__main__":
@@ -68,4 +68,5 @@ if __name__ == "__main__":
 
     conf = set_params(parser.parse_args().config)
     _set_main_params(conf)
+
     triangulation()
