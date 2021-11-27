@@ -27,11 +27,7 @@ class Map(PfMap):
         
         return estim_pos
     
-    def safe_draw_pos(self, pos: np.ndarray) -> None:
+    def draw_pos(self, pos: np.ndarray) -> None:
         if pf_param.ENABLE_CLEAR:
             self.clear()
-        try: 
-            super().draw_any_pos(pos, (0, 0, 255))
-        except:
-            print("map.py: error occurred when drawimg position")
-            print(f"map.py: position is {pos}")
+        self.draw_any_pos(pos, (0, 0, 255))

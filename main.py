@@ -33,7 +33,7 @@ def triangulation() -> None:
             estim_pos = map.estim_pos_by_triangulation(strong_beacon_indexes, strong_rssis)
 
             if not np.isnan(estim_pos[0]):    # if not lost
-                map.safe_draw_pos(estim_pos)
+                map.draw_pos(estim_pos)
                 map.show()
             if pf_param.ENABLE_SAVE_VIDEO:
                 map.record()
@@ -48,7 +48,7 @@ def triangulation() -> None:
             estim_pos = map.estim_pos_by_triangulation(strong_beacon_indexes, strong_rssis)
 
             if not np.isnan(estim_pos[0]):
-                map.safe_draw_pos(estim_pos)
+                map.draw_pos(estim_pos)
                 map.show()
             if pf_param.ENABLE_SAVE_VIDEO:
                 map.record()
