@@ -10,7 +10,7 @@ class Map(PfMap):
     def __init__(self, log: Log) -> None:
         global RSSI_AT_BEACON
 
-        RSSI_AT_BEACON = util.calc_rssi_by_dist(0)
+        RSSI_AT_BEACON = np.float16(util.calc_rssi_by_dist(0))
 
         super().__init__(log)
 
@@ -27,7 +27,7 @@ class Map(PfMap):
                     i += 1
             
             return estim_pos
-    
+
     def draw_pos(self, pos: np.ndarray) -> None:
         if pf_param.ENABLE_CLEAR:
             self.clear()

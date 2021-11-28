@@ -21,10 +21,10 @@ def get_strong_beacons(rssi_list: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
 def calc_rssi_by_dist(dist: float) -> float:
     return -10 * pf_param.PROPAG_COEF * math.log10(dist + pf_param.EL_CORRECTION) - 68
 
-def _divide_interiorly(val_1: Any, val_2: Any, ratio_1: np.float64, ratio_2: np.float64) -> Any:
+def _divide_interiorly(val_1: Any, val_2: Any, ratio_1: np.float16, ratio_2: np.float16) -> Any:
     return (ratio_2 * val_1 + ratio_1 * val_2) / (ratio_1 + ratio_2)
 
-def divide_pos_and_rssi(pos_1: np.ndarray, pos_2: np.ndarray, rssi_1: np.float64, rssi_2: np.float64, rssi_at_beacon: float) -> Tuple[np.ndarray, np.float64]:
+def divide_pos_and_rssi(pos_1: np.ndarray, pos_2: np.ndarray, rssi_1: np.float16, rssi_2: np.float16, rssi_at_beacon: np.float16) -> Tuple[np.ndarray, np.float16]:
     rssi_1_diff = rssi_at_beacon - rssi_1
     rssi_2_diff = rssi_at_beacon - rssi_2
 
