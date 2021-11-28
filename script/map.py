@@ -18,16 +18,17 @@ class Map(PfMap):
         if len(beacon_indexes) < 3:
             return np.full(2, np.nan, dtype=np.float16)    # can't solve triangulation
 
-        if param.TRIANGULATE_POLICY == 2:    # interior division
-            estim_pos, divided_rssi = util.divide_pos_and_rssi(self.beacon_pos_list[beacon_indexes[0]], self.beacon_pos_list[beacon_indexes[1]], rssis[0], rssis[1], RSSI_AT_BEACON)
-            i: int = 2
-            while i < len(beacon_indexes):
-                estim_pos, divided_rssi = util.divide_pos_and_rssi(estim_pos, self.beacon_pos_list[beacon_indexes[i]], divided_rssi, rssis[i], RSSI_AT_BEACON)
-                i += 1
-        
-        return estim_pos
+        else:
+            if param.TRIANGULATE_POLICY == 2:    # interior division
+                estim_pos, divided_rssi = util.divide_pos_and_rssi(self.beacon_pos_list[beacon_indexes[0]], self.beacon_pos_list[beacon_indexes[1]], rssis[0], rssis[1], RSSI_AT_BEACON)
+                i = 2
+                while i < len(beacon_indexes):
+                    estim_pos, divided_rssi = util.divide_pos_and_rssi(estim_pos, self.beacon_pos_list[beacon_indexes[i]], divided_rssi, rssis[i], RSSI_AT_BEACON)
+                    i += 1
+            
+            return estim_pos
     
     def draw_pos(self, pos: np.ndarray) -> None:
         if pf_param.ENABLE_CLEAR:
             self.clear()
-        self.draw_any_pos(pos, (0, 0, 255))
+        self._draw_any_pos(pos, (0, 0, 255))

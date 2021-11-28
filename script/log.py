@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Tuple
 import numpy as np
 from particle_filter.script.log import Log as PfLog
@@ -10,14 +10,14 @@ class Log(PfLog):
         super().__init__(begin, end)
 
         if param.LERP_WIN_POLICY == 1:    # if linear interpolation is enabled
-            sample_num = int(param.FREQ * (end - begin).seconds)    # the number of samples at interpolation
+            sample_num = np.uint32(param.FREQ * (end - begin).seconds)    # the number of samples at interpolation
             self.lerped_ts = np.empty(sample_num, dtype=datetime)
             self.lerped_rssi = np.full((sample_num, len(self.mac_list)), -np.inf, dtype=np.float16)
 
+            stride: timedelta = (end - begin) / sample_num
             separated_ts, separated_rssi = self._separate_by_mac()
-
             for i in range(sample_num):
-                self.lerped_ts[i] = begin + i * (end - begin) / sample_num
+                self.lerped_ts[i] = begin + i * stride
                 for j in range(len(self.mac_list)):
                     for k in range(len(separated_ts[j]) - 1):
                         if separated_ts[j][k] <= self.lerped_ts[i] <= separated_ts[j][k+1]:
