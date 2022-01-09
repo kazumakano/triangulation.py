@@ -29,8 +29,8 @@ You can customize following parameters:
 |                      |                                                   |                                                                      |               |
 | win_policy           | policy to get representative RSSI value in window | 1: maximum, 2: latest                                                | `int`         |
 |                      |                                                   |                                                                      |               |
-| log_lerp_freq        | frequency at log interpolation [Hz]               |                                                                      | `float`       |
 | lerp_win_policy      | policy of positioning with RSSI log               | 1: linear interpolation, 2: sliding window                           | `int`         |
+| log_lerp_freq        | frequency at log interpolation [Hz]               |                                                                      | `float`       |
 | max_blank_len        | maximum length of blank to interpolate [second]   |                                                                      | `float`       |
 | max_use_beacon_num   | maximum number of beacons to use at triangulation | must be >= 3                                                         | `int`         |
 |                      |                                                   |                                                                      |               |
