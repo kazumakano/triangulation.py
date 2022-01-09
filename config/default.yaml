@@ -1,36 +1,37 @@
-# log
-lerp_freq: 1
-max_blank_len: 2
-
-# triangulation
-lerp_win_policy: 1
-triangulate_policy: 2
-max_use_beacon_num: 3
-
-# particle filter
 begin: "2000-01-01 00:00:00"
 end: "2000-01-01 23:59:59"
-enable_truth: False
-
-map_img_file: sample.pgm
-map_conf_file: sample.yaml
-enable_clear_map: True
-enable_draw_beacons: False
-map_show_policy: 1
-
-max_particle_stride: 32
-direct_sd: 4.5
-lost_resample_policy: 2
+log_file: "sample_ble.csv"
 
 win_size: 2
+
+enable_clear_map: True
+enable_draw_beacons: False
+enable_save_img: False
+enable_save_video: False
+frame_rate: 1
+map_conf_file: sample.yaml
+map_img_file: sample.pgm
+map_show_policy: 1
+result_file_name:
 win_stride: 1
+
+enable_truth: False
+
+el_correction: 2
+propag_coef: 4
+
 win_policy: 1
 
-enable_save_video: False
-enable_save_img: False
-file_name:
-frame_rate: 1
+lerp_win_policy: 1
+log_lerp_freq: 1
+max_blank_len: 2
+max_use_beacon_num: 3
 
-propag_coef: 4
-el_correction: 2
+triangulate_policy: 2
+
+# tentative
+direct_sd: 4.5
+max_particle_stride: 32
+lost_resample_policy: 1
 dist_sd: 64
+neg_weight_coef: 0
