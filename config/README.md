@@ -25,13 +25,13 @@ You can customize following parameters:
 | ~~direct_sd~~            | ~~standard deviation of direction at walk~~             |                                                                      | ~~`float`~~   |
 | ~~max_particle_stride~~  | ~~maximum stride width of particles in a step [pixel]~~ |                                                                      | ~~`float`~~   |
 |                          |                                                         |                                                                      |               |
-| ~~lost_resample_policy~~ | ~~policy to resample particles when lost~~              | 1: reset, 2: use last particles                                      | ~~`int`~~     |
+| ~~lost_resample_policy~~ | ~~policy to resample particles when lost~~              | ~~1: reset, 2: use last particles~~                                  | ~~`int`~~     |
 |                          |                                                         |                                                                      |               |
 | enable_truth             | enable ground truth or not                              |                                                                      | `bool`        |
 |                          |                                                         |                                                                      |               |
 | ~~dist_sd~~              | ~~standard deviation of distance gap~~                  |                                                                      | ~~`float`~~   |
 | el_correction            | correction term for difference in elevation             |                                                                      | `float`       |
-| ~~neg_weight_coef~~      | ~~coefficient for negative weight~~                     | not consider undetected beacons if 0                                 | ~~`float`~~   |
+| ~~neg_weight_coef~~      | ~~coefficient for negative weight~~                     | ~~not consider undetected beacons if 0~~                             | ~~`float`~~   |
 | propag_coef              | propagation coefficient                                 | takes 2 in ideal environment                                         | `float`       |
 |                          |                                                         |                                                                      |               |
 | win_policy               | policy to get representative RSSI value in window       | 1: maximum, 2: latest                                                | `int`         |
