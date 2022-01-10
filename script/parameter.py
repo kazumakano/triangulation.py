@@ -1,22 +1,22 @@
 import os.path as path
-from typing import Union
+from typing import Any, Union
 import numpy as np
 from particle_filter.script.parameter import set_params as set_pf_params
 
 
-def _set_log_params(conf: dict) -> None:
+def _set_log_params(conf: dict[str, Any]) -> None:
     global FREQ, MAX_BLANK_LEN, MAX_USE_BEACON_NUM
 
     FREQ = np.float16(conf["log_lerp_freq"])
     MAX_BLANK_LEN = np.float16(conf["max_blank_len"])
     MAX_USE_BEACON_NUM = np.int8(conf["max_use_beacon_num"])
 
-def _set_map_params(conf: dict) -> None:
+def _set_map_params(conf: dict[str, Any]) -> None:
     global TRIANGULATE_POLICY
 
     TRIANGULATE_POLICY = np.int8(conf["triangulate_policy"])
 
-def set_params(conf_file: Union[str, None] = None) -> dict:
+def set_params(conf_file: Union[str, None] = None) -> dict[str, Any]:
     global ROOT_DIR
 
     ROOT_DIR = path.join(path.dirname(__file__), "../")
