@@ -22,7 +22,6 @@ propag_coef: 4
 
 win_policy: 1
 
-lerp_win_policy: 1
 log_lerp_freq: 1
 max_blank_len: 2
 max_use_beacon_num: 3

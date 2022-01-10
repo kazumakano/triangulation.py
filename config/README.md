@@ -9,7 +9,7 @@ You can customize following parameters:
 | end                  | end datetime of RSSI log                          | must be like 'yyyy-mm-dd hh:mm:ss'                                   | `str`         |
 | log_file             | RSSI log file                                     |                                                                      | `str`         |
 |                      |                                                   |                                                                      |               |
-| win_size             | size of sliding window [second]                   |                                                                      | `float`       |
+| win_size             | size of sliding window [second]                   | interpolated instead if 0                                            | `float`       |
 |                      |                                                   |                                                                      |               |
 | enable_clear_map     | clear map image at each step or not               |                                                                      | `bool`        |
 | enable_draw_beacons  | draw beacon positions or not                      |                                                                      | `bool`        |
@@ -29,7 +29,6 @@ You can customize following parameters:
 |                      |                                                   |                                                                      |               |
 | win_policy           | policy to get representative RSSI value in window | 1: maximum, 2: latest                                                | `int`         |
 |                      |                                                   |                                                                      |               |
-| lerp_win_policy      | policy of positioning with RSSI log               | 1: linear interpolation, 2: sliding window                           | `int`         |
 | log_lerp_freq        | frequency of log interpolation [Hz]               |                                                                      | `float`       |
 | max_blank_len        | maximum length of blank to interpolate [second]   |                                                                      | `float`       |
 | max_use_beacon_num   | maximum number of beacons to use at triangulation | must be >= 3                                                         | `int`         |

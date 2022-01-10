@@ -2,7 +2,6 @@ import os.path as path
 from datetime import datetime, timedelta
 import numpy as np
 import particle_filter.script.parameter as pf_param
-import script.parameter as param
 import script.utility as util
 from script.log import Log
 from script.map import Map
@@ -26,7 +25,7 @@ def triangulate() -> None:
         map.init_recorder()
 
     t: datetime
-    if param.LERP_WIN_POLICY == 1:    # liner interpolation
+    if pf_param.WIN_SIZE == 0:    # liner interpolation
         for i, t in enumerate(log.lerped_ts):
             print(f"main.py: {t.time()}")
 
@@ -39,7 +38,7 @@ def triangulate() -> None:
             if pf_param.ENABLE_SAVE_VIDEO:
                 map.record()
 
-    elif param.LERP_WIN_POLICY == 2:    # sliding window
+    else:                         # sliding window
         t = BEGIN
         while t <= END:
             print(f"main.py; {t.time()}")

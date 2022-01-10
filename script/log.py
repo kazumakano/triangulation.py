@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import numpy as np
+import particle_filter.script.parameter as pf_param
 from particle_filter.script.log import Log as PfLog
 from . import parameter as param
 
@@ -8,7 +9,7 @@ class Log(PfLog):
     def __init__(self, begin: datetime, end: datetime, file: str) -> None:
         super().__init__(begin, end, file)
 
-        if param.LERP_WIN_POLICY == 1:    # linear interpolation
+        if pf_param.WIN_SIZE == 0:    # linear interpolation instead of sliding window
             sample_num = np.int64(param.FREQ * (end - begin).seconds)    # number of samples for interpolation
             self.lerped_ts = np.empty(sample_num, dtype=datetime)
             self.lerped_rssi = np.full((sample_num, len(self.mac_list)), -np.inf, dtype=np.float16)
