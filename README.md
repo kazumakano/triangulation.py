@@ -1,5 +1,5 @@
 # triangulation.py
-This is Python module to estimate subject position with simple triangulation.
+This is Python module to estimate subject's position with simple triangulation.
 
 ## Usage
 ### main.py
