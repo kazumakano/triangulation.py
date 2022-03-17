@@ -7,14 +7,14 @@ from particle_filter.script.parameter import set_params as set_pf_params
 def _set_log_params(conf: dict[str, Any]) -> None:
     global FREQ, MAX_BLANK_LEN, MAX_USE_BEACON_NUM
 
-    FREQ = np.float16(conf["log_lerp_freq"])
-    MAX_BLANK_LEN = np.float16(conf["max_blank_len"])
+    FREQ = np.float32(conf["log_lerp_freq"])
+    MAX_BLANK_LEN = np.float32(conf["max_blank_len"])
     MAX_USE_BEACON_NUM = np.int8(conf["max_use_beacon_num"])
 
 def _set_map_params(conf: dict[str, Any]) -> None:
-    global TRIANGULATE_POLICY
+    global TRILATERATE_POLICY
 
-    TRIANGULATE_POLICY = np.int8(conf["triangulate_policy"])
+    TRILATERATE_POLICY = np.int8(conf["trilaterate_policy"])
 
 def set_params(conf_file: Union[str, None] = None) -> dict[str, Any]:
     global ROOT_DIR
