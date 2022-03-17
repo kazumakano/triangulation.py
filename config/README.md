@@ -36,4 +36,4 @@ You can customize following parameters:
 |                     |                                                   |                                                                      |               |
 | trilaterate_policy  | policy to trilaterate                             | 1: normal distribution probability, 2: interior division             | `int`         |
 |                     |                                                   |                                                                      |               |
-| max_use_beacon_num  | maximum number of beacons to use at trilateration | must be >= 3                                                         | `int`         |
+| max_use_beacon_num  | maximum number of beacons to use at trilateration | must be no less than 3                                               | `int`         |
