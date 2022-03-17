@@ -33,6 +33,7 @@ You can customize following parameters:
 |                     |                                                   |                                                                      |               |
 | log_lerp_freq       | frequency of log interpolation [Hz]               |                                                                      | `float`       |
 | max_blank_len       | maximum length of blank to interpolate [s]        |                                                                      | `float`       |
-| max_use_beacon_num  | maximum number of beacons to use at trilateration | must be >= 3                                                         | `int`         |
 |                     |                                                   |                                                                      |               |
 | trilaterate_policy  | policy to trilaterate                             | 1: normal distribution probability, 2: interior division             | `int`         |
+|                     |                                                   |                                                                      |               |
+| max_use_beacon_num  | maximum number of beacons to use at trilateration | must be >= 3                                                         | `int`         |
