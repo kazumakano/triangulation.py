@@ -7,7 +7,7 @@ from . import utility as util
 
 
 class Map(PfMap):
-    def __init__(self, mac_list: np.ndarray, result_dir: Union[str, None]) -> None:
+    def __init__(self, mac_list: np.ndarray, result_dir: Union[str, None] = None) -> None:
         self.rssi_at_beacon = np.float32(util.calc_rssi_by_dist(0))
 
         super().__init__(mac_list, result_dir)
