@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 import numpy as np
 import particle_filter.script.parameter as pf_param
 from particle_filter.script.map import Map as PfMap
@@ -7,7 +7,7 @@ from . import utility as util
 
 
 class Map(PfMap):
-    def __init__(self, mac_list: np.ndarray, result_dir: Union[str, None] = None) -> None:
+    def __init__(self, mac_list: np.ndarray, result_dir: Optional[str] = None) -> None:
         self.rssi_at_beacon = np.float32(util.calc_rssi_by_dist(0))
 
         super().__init__(mac_list, result_dir)
